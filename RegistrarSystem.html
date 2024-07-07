@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff; /* White background */
+            color: #333;
+        }
+        header {
+            background: #d32f2f; /* Red */
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        .form-container {
+            background: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border: 2px solid #fbc02d; /* Yellow border */
+        }
+        input[type="text"], input[type="password"], input[type="submit"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            background: #fbc02d; /* Yellow */
+            color: #333;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background: #f9a825; /* Darker Yellow */
+        }
+        button {
+            background: #d32f2f; /* Red */
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #c62828; /* Darker Red */
+        }
+        .role-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Registrar System</h1>
+    </header>
+
+    <div class="container">
+        
+        <!-- Login Form -->
+        <div class="form-container">
+            <h2>Login</h2>
+            <form id="loginForm">
+                <input type="text" id="username" placeholder="Username" required>
+                <input type="password" id="password" placeholder="Password" required>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        
+        <!-- Super Admin Functions -->
+        <div class="form-container role-section" id="superAdminSection" style="display: none;">
+            <h2>Super Admin Functions</h2>
+            <form id="createAdminForm">
+                <h3>Add Admin Account</h3>
+                <input type="text" id="adminUsername" placeholder="Admin Username" required>
+                <input type="password" id="adminPassword" placeholder="Admin Password" required>
+                <input type="submit" value="Add Admin">
+            </form>
+            <form id="createStudentForm" style="margin-top: 20px;">
+                <h3>Add Student Account</h3>
+                <input type="text" id="studentUsername" placeholder="Student Username" required>
+                <input type="password" id="studentPassword" placeholder="Student Password" required>
+                <input type="submit" value="Add Student">
+            </form>
+        </div>
+
+        <!-- Admin Functions -->
+        <div class="form-container role-section" id="adminSection" style="display: none;">
+            <h2>Admin Functions</h2>
+            <form id="dataRequestForm">
+                <h3>Request Data</h3>
+                <input type="text" id="requestUsername" placeholder="Username to Request Data From" required>
+                <input type="submit" value="Request Data">
+            </form>
+            <form id="addStudentForm" style="margin-top: 20px;">
+                <h3>Add Student Account</h3>
+                <input type="text" id="newStudentUsername" placeholder="Student Username" required>
+                <input type="password" id="newStudentPassword" placeholder="Student Password" required>
+                <input type="submit" value="Add Student">
+            </form>
+        </div>
+
+        <!-- Student Functions -->
+        <div class="form-container role-section" id="studentSection" style="display: none;">
+            <h2>Student Functions</h2>
+            <form id="dataRequestFormStudent">
+                <h3>Request Data</h3>
+                <input type="text" id="studentRequestUsername" placeholder="Username to Request Data From" required>
+                <input type="submit" value="Request Data">
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript for role-based display
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Role-based logic
+            if (username === 'superadmin' && password === 'adminpass') {
+                document.getElementById('superAdminSection').style.display = 'block';
+            } else if (username === 'admin' && password === 'adminpass') {
+                document.getElementById('adminSection').style.display = 'block';
+            } else if (username === 'student' && password === 'studentpass') {
+                document.getElementById('studentSection').style.display = 'block';
+            } else {
+                alert('Invalid credentials');
+            }
+        });
+
+        // Form submissions
+        document.getElementById('createAdminForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Admin account added');
+        });
+        document.getElementById('createStudentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Student account added');
+        });
+        document.getElementById('dataRequestForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Data request submitted');
+        });
+        document.getElementById('addStudentForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Student account added');
+        });
+        document.getElementById('dataRequestFormStudent').addEventListener('submit', function(event) {
+            event.preventDefault();
+            alert('Data request submitted');
+        });
+    </script>
+
+</body>
+</html>
